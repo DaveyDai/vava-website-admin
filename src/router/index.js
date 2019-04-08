@@ -29,49 +29,29 @@ import nestedRouter from './modules/nested'
     icon: 'svg-name'             the icon show in the sidebar
     noCache: false                if true, 则不缓存页面
     breadcrumb: true            if false, 在面包屑导航条中不显示
-    affix: true                  if true, 在tag中默认添加改路由并且不可删除
+    affix: true                  if true, 在tagview中默认添加的路由并且不可删除
   }e
 **/
 
-/**
- * constantRoutes
- * a base page that does not have permission requirements
- * all roles can be accessed
- * */
+// 无需权限的基础页面
 export const constantRoutes = [
   {
-    path: '/redirect',
-    component: Layout,
-    hidden: true,
-    children: [
-      {
-        path: '/redirect/:path*',
-        component: () => import('@/views/redirect/index')
-      }
-    ]
-  },
-  {
-    path: '/login',
+    path: '/login', // 登录
     component: () => import('@/views/login/index'),
     hidden: true
   },
   {
-    path: '/auth-redirect',
-    component: () => import('@/views/login/authRedirect'),
-    hidden: true
-  },
-  {
-    path: '/404',
+    path: '/404', // 404找不到该页面
     component: () => import('@/views/errorPage/404'),
     hidden: true
   },
   {
-    path: '/401',
+    path: '/401', // 无权限提示页面
     component: () => import('@/views/errorPage/401'),
     hidden: true
   },
   {
-    path: '',
+    path: '', // 系统首页
     component: Layout,
     redirect: 'dashboard',
     children: [
