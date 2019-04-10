@@ -1,11 +1,10 @@
-/** When your routing table is too long, you can split it into small modules**/
-
+// 产品管理路由配置
 import Layout from '@/layout'
 
 const chartsRouter = {
-  path: '/charts',
+  path: '/product',
   component: Layout,
-  redirect: 'noredirect',
+  redirect: '/product/product-list',
   name: 'Charts',
   meta: {
     title: 'charts',
