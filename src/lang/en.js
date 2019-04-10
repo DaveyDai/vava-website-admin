@@ -1,6 +1,6 @@
 export default {
   route: {
-    dashboard: 'Dashboard',
+    overview: 'Overview',
     introduction: 'Introduction',
     documentation: 'Documentation',
     guide: 'Guide',

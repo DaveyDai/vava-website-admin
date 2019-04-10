@@ -8,7 +8,7 @@ import Layout from '@/layout'
 
 /* Router Modules */
 // import componentsRouter from './modules/components'
-
+// 产品管理模块
 /**
 * hidden: true                   if `hidden:true` 不会显示在边栏中（默认值为false）
 * alwaysShow: true               设置为true时 左侧菜单栏 不论子菜单多少都会显示根菜单
@@ -44,13 +44,13 @@ export const constantRoutes = [
   {
     path: '', // 系统首页
     component: Layout,
-    redirect: 'dashboard',
+    redirect: 'overview',
     children: [
       {
-        path: 'dashboard',
-        component: () => import('@/views/dashboard/index'),
-        name: 'Dashboard',
-        meta: { title: 'dashboard', icon: 'dashboard', noCache: true, affix: true }
+        path: 'overview',
+        component: () => import('@/views/home/index'),
+        name: 'Overview',
+        meta: { title: 'overview', icon: 'overview', noCache: true, affix: true }
       }
     ]
   }

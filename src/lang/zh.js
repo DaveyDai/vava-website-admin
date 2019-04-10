@@ -1,6 +1,6 @@
 export default {
   route: {
-    dashboard: '首页',
+    overview: '总览',
     introduction: '简述',
     documentation: '文档',
     guide: '引导页',

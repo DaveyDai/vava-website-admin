@@ -1,9 +1,12 @@
 
 <template>
   <!-- eslint-disable vue/require-component-is -->
-  <component v-bind="linkProps(to)">
+  <!-- <component v-bind="linkProps(to)">
     <slot />
-  </component>
+  </component> -->
+  <div @click="linkTo(to)">
+    <slot />
+  </div>
 </template>
 
 <script>
@@ -17,6 +20,9 @@ export default {
     }
   },
   methods: {
+    linkTo (url) {
+      isExternal(url) ? window.open(url) : this.$router.push(url)
+    },
     linkProps(url) {
       if (isExternal(url)) {
         return {

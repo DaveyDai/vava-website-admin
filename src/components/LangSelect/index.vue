@@ -10,9 +10,9 @@
       <el-dropdown-item :disabled="language==='en'" command="en">
         English
       </el-dropdown-item>
-      <el-dropdown-item :disabled="language==='es'" command="es">
+      <!-- <el-dropdown-item :disabled="language==='es'" command="es">
         Español
-      </el-dropdown-item>
+      </el-dropdown-item> -->
     </el-dropdown-menu>
   </el-dropdown>
 </template>
