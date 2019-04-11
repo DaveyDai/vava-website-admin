@@ -12,8 +12,7 @@
           OOPS!
         </div>
         <div class="bullshit__info">
-          版权所有
-          <a class="link-type" href="https://wallstreetcn.com" target="_blank">华尔街见闻</a>
+          版权所有<a class="link-type" href="http://www.sunvalley-group.com/cn/index.html" target="_blank">Sunvalley集团</a>
         </div>
         <div class="bullshit__headline">
           {{ message }}

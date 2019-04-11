@@ -52,18 +52,15 @@ export default {
     }
   },
   mounted() {
-    // this.searchProduct()
+    this.searchProduct()
   },
   methods: {
     searchProduct() {
       this.loading = true
-      this.$store.dispatch('fetchAllList', { api: 'searchProduct', data: this.searchParam }).then(data => {
+      this.$store.dispatch('api/postQuery', { api: 'searchProduct', data: this.searchParam }).then(data => {
         this.productListData = data
         this.loading = false
-      }).catch((err) => {
-        this.loading = false
-        this.$message.error(error || '获取数据失败, 请尝试刷新重试')
-      })
+      }).catch((err) => { this.loading = false })
     },
     searchKeyProduct() {
       this.searchParam.pageNo = 1
@@ -82,12 +79,11 @@ export default {
       this.$confirm(row.state ? '是否确定开启?' : '是否确定关闭?', '提示', { confirmButtonText: '是', cancelButtonText: '否', type: 'warning' }).then(() => {
         const queryParam = { updateType: Number(row.state), ids: [row.id] }
         this.loading = true
-        this.$store.dispatch('fetchAllList', { api: 'updateStateProductInfo', data: queryParam }).then(data => {
+        this.$store.dispatch('api/postQuery', { api: 'updateStateProductInfo', data: queryParam }).then(data => {
           this.$message.success('修改成功!')
           this.loading = false
         }).catch((err) => {
           row.state = !row.state
-          this.$message.error(error || '修改失败')
           this.loading = false
         })
       }).catch(() => {
@@ -102,11 +98,10 @@ export default {
       this.$confirm('是否确定删除?', '提示', { confirmButtonText: '是', cancelButtonText: '否', type: 'warning' }).then(() => {
         const queryParam = { updateType: 2, ids: [row.id] }
         this.loading = true
-        this.$store.dispatch('fetchAllList', { api: 'updateStateProductInfo', data: queryParam }).then(data => {
+        this.$store.dispatch('api/postQuery', { api: 'updateStateProductInfo', data: queryParam }).then(data => {
           this.$message.success('删除成功!')
           this.searchKeyProduct()
         }).catch((err) => {
-          this.$message.error(error || '删除失败')
           this.loading = false
         })
       }).catch(() => { this.$message.info('已取消') })

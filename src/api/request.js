@@ -9,7 +9,7 @@ console.log('请求base_url', process.env.VUE_APP_BASE_API)
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // api 的 base_url
   withCredentials: true, // 跨域请求时发送 cookies
-  timeout: 5000 // request timeout
+  timeout: 10000 // request timeout
 })
 
 // request interceptor
@@ -22,8 +22,6 @@ service.interceptors.request.use(
     return config
   },
   error => {
-    // Do something with request error
-    console.log(error) // for debug
     return Promise.reject(error)
   }
 )
@@ -43,9 +41,16 @@ service.interceptors.response.use(
   response => {
     return response.data
   },
-  error => {
-    if (error.response && error.response.status && error.response.data) Message({ message: error.response.data.message, type: 'error', duration: 5 * 1000 })
-    return Promise.reject(error)
+  error => { // 错误处理
+    console.dir(error)
+    if (error.response && error.response.status && error.response.data) {
+      Message({ message: JSON.stringify(error.response.data.message), type: 'error' })
+    } else if (error.code === 'ECONNABORTED') {
+      Message({ message: '请求超时，请重试!', type: 'error' })
+    } else {
+      Message({ message: JSON.stringify(error.message), type: 'error' })
+    }
+    return Promise.reject(error.response && error.response.data || error)
   }
 )
 

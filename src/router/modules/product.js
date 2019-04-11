@@ -13,7 +13,13 @@ const productRouter = {
       component: () => import('@/views/product/product-list'),
       name: 'ProductList',
       meta: { title: 'productList' }
-    }
+    },
+    // {
+    //   path: 'product-list',
+    //   component: () => import('@/views/product/product-list'),
+    //   name: 'ProductList',
+    //   meta: { title: 'productList' }
+    // }
   ]
 }
 

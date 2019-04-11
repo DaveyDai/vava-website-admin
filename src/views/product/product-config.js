@@ -30,10 +30,10 @@ const validateChar = (rule, value, callback) => {
 
 export default {
   listTableTitle: [ // product-list 列表
-    { title: '产品ID', key: 'id', width: 120 },
+    { title: '产品ID', key: 'id', width: 100 },
     { title: '产品名称', key: 'productName' },
     { title: '产品排序', key: 'sort', width: 100 },
-    { title: '状态', key: 'state', width: 200, isStatus: true },
+    { title: '状态', key: 'state', width: 100, isStatus: true },
     { title: '创建时间', key: 'createTime', width: 200 }
   ],
   productBaseRules: { // 产品基础数据校验

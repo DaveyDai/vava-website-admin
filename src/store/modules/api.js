@@ -1,26 +1,19 @@
-import * as api from '@/api'
+import apiUrl from '@/api'
 import request from '@/api/request'
 
 const state = {}
 
 const mutations = {}
 
-const login = data => {
-  return request({ url: api['managerLoginUser'], method: 'post', data })
-}
-
-// 公共post请求 data.code === 14006 未登录
 const actions = {
-  postQuery({ commit }, params) {
+  postQuery({ commit }, { api, data }) { // 公共post请求
     return new Promise((resolve, reject) => {
-      // login({ username: username.trim(), password: password }).then(response => {
-      //   const { data } = response
-      //   commit('SET_TOKEN', data.token)
-      //   setToken(data.token)
-      //   resolve()
-      // }).catch(error => {
-      //   reject(error)
-      // })
+      request({ url: apiUrl[api], method: 'post', data }).then(response => {
+        resolve(response.code === 200 ? response.data : response)
+      }).catch(error => {
+        if (error.code === 14006) window.location.href = `/login` // token过期重新登录
+        reject(error)
+      })
     })
   }
 }

@@ -1,10 +1,10 @@
 import request from '@/api/request'
-import api from '@/api'
+import apiUrl from '@/api'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import router, { resetRouter } from '@/router'
 
 const login = data => {
-  return request({ url: api['managerLoginUser'], method: 'post', data })
+  return request({ url: apiUrl['managerLoginUser'], method: 'post', data })
 }
 
 const getInfo = token => {
