@@ -6,9 +6,9 @@ Vue.use(Router)
 /* Layout */
 import Layout from '@/layout'
 
-/* Router Modules */
-// import componentsRouter from './modules/components'
 // 产品管理模块
+import productRouter from './modules/product'
+
 /**
 * hidden: true                   if `hidden:true` 不会显示在边栏中（默认值为false）
 * alwaysShow: true               设置为true时 左侧菜单栏 不论子菜单多少都会显示根菜单
@@ -42,6 +42,20 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: '/icon',
+    component: Layout,
+    redirect: '/icon/index',
+    hidden: true,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/svg-icons/index'),
+        name: 'Icons',
+        meta: { title: 'icons', icon: 'icon', noCache: true }
+      }
+    ]
+  },
+  {
     path: '', // 系统首页
     component: Layout,
     redirect: 'overview',
@@ -61,12 +75,12 @@ export const constantRoutes = [
  * 需要根据用户角色动态加载的路由
 */
 export const asyncRoutes = [
-
+  productRouter,
   { path: '*', redirect: '/404', hidden: true }
 ]
 
 const createRouter = () => new Router({
-  // mode: 'history',
+  mode: 'history',
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRoutes
 })

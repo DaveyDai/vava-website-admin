@@ -9,47 +9,32 @@
   </div>
 </template>
 <script>
-  import { mapGetters } from 'vuex'
-  export default {
-    watch: {
-    },
-    computed: {
-      ...mapGetters([
-        'langId',
-        'brandId'
-      ]),
-      /**
-       * 完整的urlkey
-       */
-      urlKeyTotal() {
-        return `/c/${this.currentData.urlKey}.html`
+import { mapGetters } from 'vuex'
+export default {
+  components: {
+  },
+  data() {
+    return {
+      jsonData: {}
+    }
+  },
+  mounted: function() {
+    // this.init()
+  },
+  // 方法
+  methods: {
+    init() {
+      const apiData = {
+        api: 'getPandectTotalVo',
+        data: {}
       }
-    },
-    // 定义变量
-    data() {
-      return {
-        jsonData: '',
-      }
-    },
-    mounted: function() {
-      this.init()
-    },
-    // 方法
-    methods: {
-      init() {
-        const apiData = {
-          api: 'getPandectTotalVo',
-          data: {}
-        }
-        this.$store.dispatch('fetchGetAll', apiData).then(json => {
-          console.log(json);
-          this.jsonData = json;
-        })
-      }
-    },
-    components: {
+      this.$store.dispatch('fetchGetAll', apiData).then(json => {
+        console.log(json)
+        this.jsonData = json
+      })
     }
   }
+}
 </script>
 <style lang='scss' scoped>
   .overview {

@@ -1,35 +1,20 @@
 // 产品管理路由配置
 import Layout from '@/layout'
 
-const chartsRouter = {
+const productRouter = {
   path: '/product',
   component: Layout,
   redirect: '/product/product-list',
-  name: 'Charts',
-  meta: {
-    title: 'charts',
-    icon: 'chart'
-  },
+  name: 'Product',
+  meta: { title: 'product', icon: 'shopping' },
   children: [
     {
-      path: 'keyboard',
-      component: () => import('@/views/charts/keyboard'),
-      name: 'KeyboardChart',
-      meta: { title: 'keyboardChart', noCache: true }
-    },
-    {
-      path: 'line',
-      component: () => import('@/views/charts/line'),
-      name: 'LineChart',
-      meta: { title: 'lineChart', noCache: true }
-    },
-    {
-      path: 'mixchart',
-      component: () => import('@/views/charts/mixChart'),
-      name: 'MixChart',
-      meta: { title: 'mixChart', noCache: true }
+      path: 'product-list',
+      component: () => import('@/views/product/product-list'),
+      name: 'ProductList',
+      meta: { title: 'productList' }
     }
   ]
 }
 
-export default chartsRouter
+export default productRouter
