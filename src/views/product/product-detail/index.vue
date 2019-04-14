@@ -104,7 +104,7 @@
 </template>
 
 <script>
-import pageConfig from './product-config.js'
+import pageConfig from '..product-config'
 import UploadCard from './upload-card.vue'
 import Specifications from './product-specifications.vue'
 import ProductSku from './product-sku.vue'

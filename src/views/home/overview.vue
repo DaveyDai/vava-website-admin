@@ -1,5 +1,5 @@
 <template>
-  <div class="overview">
+  <div class="overview" v-loading="loading">
     <div class="item">
       商品分类总数：<span class="num">{{ jsonData.categoryTotal }}</span> 个
     </div>
@@ -15,23 +15,20 @@ export default {
   },
   data() {
     return {
-      jsonData: {}
+      jsonData: {},
+      loading: false
     }
   },
-  mounted: function() {
-    // this.init()
+  mounted () {
+    this.init()
   },
-  // 方法
   methods: {
     init() {
-      const apiData = {
-        api: 'getPandectTotalVo',
-        data: {}
-      }
-      this.$store.dispatch('fetchGetAll', apiData).then(json => {
-        console.log(json)
+      this.loading = true
+      this.$store.dispatch('api/getQuery', {api: 'getPandectTotalVo'}).then(json => { // 请求商品数量数据
         this.jsonData = json
-      })
+        this.loading = false
+      }).catch(err => { this.loading = false })
     }
   }
 }

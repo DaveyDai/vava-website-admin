@@ -38,6 +38,7 @@
 <script>
 import pageConfig from './product-config.js'
 export default {
+  name: 'ProductList',
   data() {
     return {
       listTableTitle: pageConfig.listTableTitle,
